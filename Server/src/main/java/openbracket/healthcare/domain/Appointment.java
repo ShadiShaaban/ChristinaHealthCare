@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,63 +14,63 @@ public class Appointment {
 
 	@Id
 	@GeneratedValue
-	private int Id;
+	private int id;
 	
 	public Appointment(){
 		
 	}
 	public Appointment(String firstName, String lastName, String phone, String email) {
-		super();
-		FirstName = firstName;
-		LastName = lastName;
-		Phone = phone;
-		Email = email;
+
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.email = email;
 	}
 	
 	@NotEmpty
-	private String FirstName;
+	private String firstName;
 	
 	@NotEmpty
-	private String LastName;
+	private String lastName;
 	
 	@NotEmpty
-	private String Phone;
+	private String phone;
 	
 	@NotEmpty
-	private String Email;
+	private String email;
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 	
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
 	public String getPhone() {
-		return Phone;
+		return phone;
 	}
 	public void setPhone(String phone) {
-		Phone = phone;
+		this.phone = phone;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	
 	

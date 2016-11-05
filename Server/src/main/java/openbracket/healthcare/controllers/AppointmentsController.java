@@ -32,5 +32,15 @@ public class AppointmentsController {
 		return appointment.getId();
     }
 	
-	
+	@RequestMapping("/checkAppointment")
+    public Boolean checkAppointment(@RequestParam(value="id") int id, @RequestParam(value="lastName") String lastName ) 
+	{
+		Appointment appointment = appointmentsService.getAppointmentById(id);
+		if(appointment != null && appointment.getLastName().toUpperCase().equals(lastName.toUpperCase())){
+			return true;
+		}
+		return false;
+    }
+		
+
 }

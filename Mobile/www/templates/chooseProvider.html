@@ -3,13 +3,19 @@
     <form id="chooseProvider-form2" class="list">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="type to search..">
+        <input type="search" placeholder="type to search.." ng-model="form.keyword" ng-change="searchProviders()">
       </label>
-      <ion-list id="chooseProvider-list1">
-        <ion-item id="chooseProvider-list-item6">Provider 1</ion-item>
-        <ion-item id="chooseProvider-list-item7">Provider 2 </ion-item>
-        <ion-item id="chooseProvider-list-item8">Provider 3</ion-item>
+      <ion-list id="chooseProvider-list1" >
+        <ion-item id="chooseProvider-list-item6" ng-repeat="item in providersList">
+         <b>{{item.name}}</b><br />
+         {{item.address}}<br />
+         Phone: {{item.phone}} <br />         
+         <u>Speciality: {{item.speciality}}</u> 
+         </ion-item>       
       </ion-list>
+      <div style="text-align:center; padding:20px; 5px"  ng-show="showSpinner">
+        <ion-spinner></ion-spinner>
+      </div>
     </form>
   </ion-content>
 </ion-view>

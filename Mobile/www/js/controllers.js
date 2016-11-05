@@ -53,9 +53,24 @@ function ($scope, $stateParams, appointmentsService, $ionicLoading) {
 
 }])
    
-.controller('manageAppointmentCtrl', ['$scope', '$stateParams',
-function ($scope, $stateParams) {
-
+.controller('manageAppointmentCtrl', ['$scope', '$stateParams',  'appointmentsService' , '$ionicLoading',
+function ($scope, $stateParams, appointmentsService , $ionicLoading) {
+	$scope.form = {};
+	
+	$scope.checkAppointment = function(){
+		$ionicLoading.show({ template: 'Loading...' });
+		appointmentsService.checkAppointment($scope.form.id, $scope.form.lastName).then(
+		function(data){			
+			alert("Appointment was found successfully.");
+			localStorage.setItem("currentManageAppointmentId", $scope.form.id);
+			localStorage.setItem("currentManageAppointmentLastName", $scope.form.lastName);
+		},
+		function(error){
+			alert("Appointment was not found.");
+		}).finally(function(){
+			$ionicLoading.hide();
+		});
+	}
 
 }])
       
@@ -65,9 +80,36 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('chooseProviderCtrl', ['$scope', '$stateParams', 
-function ($scope, $stateParams) {
+.controller('chooseProviderCtrl', ['$scope', '$stateParams' , 'healthProvidersService',  '$ionicLoading',
+function ($scope, $stateParams , healthProvidersService , $ionicLoading) {
 
+	    $scope.providersList = [];
+		$scope.form = {};
+		$scope.changeTimeout = null;
+		$scope.showSpinner = false;
+		$scope.searchProviders = function(){			
+			if($scope.form.keyword != ""){
+				$scope.showSpinner = true;
+				// reduce server load and give user more time to type
+				if($scope.changeTimeout) 
+					clearTimeout($scope.changeTimeout);
+				$scope.changeTimeout = setTimeout(function(){
+				healthProvidersService.searchByKeyword($scope.form.keyword).then(
+					function(data){
+						console.log(data);
+						$scope.showSpinner = false;
+						$scope.providersList = data;
+					}, 
+					function(){
+						$scope.providersList = [];
+					}).finally(function(){
+						$scope.showSpinner = false;
+					});
+				}, 2000);
+			}else{
+				$scope.providersList = [];
+			}
+	    }
 
 }])
    

@@ -21,4 +21,8 @@ public class AppointmentsServiceImpl implements AppointmentsService {
 		appoitnmentsRepository.save(appointment);
 	}
 
+	@Override
+	public Appointment getAppointmentById(int id) {
+		return appoitnmentsRepository.getOne(id);
+	}	
 }
