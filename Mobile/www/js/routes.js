@@ -39,7 +39,7 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
   .state('scheduleAppointment', {
-    url: '/scheduleAppointment',
+    url: '/scheduleAppointment/:providerId',
     templateUrl: 'templates/scheduleAppointment.html',
     controller: 'scheduleAppointmentCtrl'
   })

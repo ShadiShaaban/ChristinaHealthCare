@@ -1,14 +1,19 @@
 <ion-view title="Confirmation" id="page7">
   <ion-content padding="true" class="has-header">
+    <div style="text-align:center; padding:20px; 5px"  ng-show="showSpinner">
+        <ion-spinner></ion-spinner>
+    </div>
+    <div ng-show="!showSpinner">
     <div id="confirmation-markdown2" style="text-align:center;" class="show-list-numbers-and-dots">
       <p style="color:#000000;">Thank you for scheduling your appointment, your appointment number is:</p>
     </div>
-    <h1 id="confirmation-heading2" style="color:#000000;text-align:center;">12345</h1>
+    <h1 id="confirmation-heading2" style="color:#000000;text-align:center;">{{currentId}}</h1>
     <div id="confirmation-markdown3" style="text-align:center;" class="show-list-numbers-and-dots">
       <p style="color:#000000;">Please use your appointment number with your following last name to manage your appointment later.</p>
     </div>
-    <h1 id="confirmation-heading3" style="color:#000000;text-align:center;">Last Name</h1>
+    <h1 id="confirmation-heading3" style="color:#000000;text-align:center;">{{form1Data.lastName}}</h1>
     <div class="spacer" style="width: 300px; height: 51px;"></div>
-    <button id="confirmation-button5" class="button button-positive  button-block">Manage Appointment</button>
+    <a id="confirmation-button5" class="button button-positive  button-block" href="#/manageAppointment" >Manage Appointment</a>
+    </div>
   </ion-content>
 </ion-view>

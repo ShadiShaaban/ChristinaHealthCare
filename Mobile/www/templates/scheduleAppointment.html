@@ -1,6 +1,9 @@
 <ion-view title="Schedule Appointment" id="page6">
   <ion-content padding="true" class="has-header">
-    <form id="scheduleAppointment-form3" class="list">
+    <div style="text-align:center; padding:20px; 5px"  ng-show="showSpinner">
+        <ion-spinner></ion-spinner>
+    </div>
+    <form id="scheduleAppointment-form3" class="list" ng-show="!showSpinner">
       <label class="item item-select" id="scheduleAppointment-select3" name="year">
         <span class="input-label">Year</span>
         <select>
@@ -34,7 +37,7 @@
         <span class="input-label">Time</span>
         <select></select>
       </label>
-      <button id="scheduleAppointment-button4" class="button button-positive  button-block">Confirm Appointment</button>
+      <button id="scheduleAppointment-button4" class="button button-positive  button-block" ng-click="confirmAppointment()">Confirm Appointment</button>
     </form>
   </ion-content>
 </ion-view>

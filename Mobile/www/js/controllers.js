@@ -57,6 +57,16 @@ function ($scope, $stateParams, appointmentsService, $ionicLoading) {
 function ($scope, $stateParams, appointmentsService , $ionicLoading) {
 	$scope.form = {};
 	
+	$scope.$on("$ionicView.enter", function(event, data){
+		// handle event
+		// check if user has an appointment recently
+		if(localStorage.getItem("currentManageAppointmentId") != undefined){			
+			$scope.form.id = parseInt(localStorage.getItem("currentManageAppointmentId"));
+			$scope.form.lastName = localStorage.getItem("currentManageAppointmentLastName");					
+		}		
+
+	});
+	
 	$scope.checkAppointment = function(){
 		$ionicLoading.show({ template: 'Loading...' });
 		appointmentsService.checkAppointment($scope.form.id, $scope.form.lastName).then(
@@ -110,18 +120,64 @@ function ($scope, $stateParams , healthProvidersService , $ionicLoading) {
 				$scope.providersList = [];
 			}
 	    }
+		
+		$scope.chooseProvider = function(id){
+			location = "#/scheduleAppointment/" + id;
+		}
 
 }])
    
-.controller('scheduleAppointmentCtrl', ['$scope', '$stateParams', 
-function ($scope, $stateParams) {
+.controller('scheduleAppointmentCtrl', ['$scope', '$stateParams', 'healthProvidersService',  '$ionicLoading',
+function ($scope, $stateParams, healthProvidersService , $ionicLoading) {
 
+	$scope.showSpinner = true;
+	$scope.$on("$ionicView.enter", function(event, data){
+		// handle event
+		// load available times of health provider
+		if(localStorage.getItem("newAppointmentData") != undefined){
+			$scope.form1Data = JSON.parse(localStorage.getItem("newAppointmentData"));			
+		}
+		
+		healthProvidersService.getTimes($stateParams.providerId).then(
+			function(data){
+				// TODO: set years
+				// TODO: set months
+				// TODO: set days
+			}, 
+			function(){
+				alert("Error happend, unable to get available times for this health provider.");
+			}
+		);
+		
+		// items loaded
+		$scope.showSpinner = false;
+	});
+	
+	$scope.confirmAppointment = function(){
+			location = "#/appointmentConfirmation";
+	}
 
 }])
    
 .controller('confirmationCtrl', ['$scope', '$stateParams', 
 function ($scope, $stateParams) {
-
+	
+	$scope.form1Data = {		
+		lastName: "XXXXXX"
+	};
+	$scope.currentId = "#####";
+	$scope.showSpinner = true;
+	$scope.$on("$ionicView.enter", function(event, data){
+		// handle event
+		// check if user has previously entered data to load it
+		if(localStorage.getItem("newAppointmentData") != undefined){
+			$scope.form1Data = JSON.parse(localStorage.getItem("newAppointmentData"));
+			$scope.currentId = JSON.parse(localStorage.getItem("currentAppointmentId"));	
+			localStorage.setItem("currentManageAppointmentId", $scope.currentId);
+			localStorage.setItem("currentManageAppointmentLastName", $scope.form1Data.lastName);					
+		}		
+		$scope.showSpinner = false;
+	});
 
 }])
  

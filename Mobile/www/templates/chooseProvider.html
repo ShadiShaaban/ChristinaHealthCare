@@ -5,8 +5,8 @@
         <i class="icon ion-search placeholder-icon"></i>
         <input type="search" placeholder="type to search.." ng-model="form.keyword" ng-change="searchProviders()">
       </label>
-      <ion-list id="chooseProvider-list1" >
-        <ion-item id="chooseProvider-list-item6" ng-repeat="item in providersList">
+      <ion-list id="chooseProvider-list1" ng-repeat="item in providersList" ng-click="chooseProvider({{item.id}})">
+        <ion-item id="chooseProvider-list-item6" >
          <b>{{item.name}}</b><br />
          {{item.address}}<br />
          Phone: {{item.phone}} <br />         

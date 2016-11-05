@@ -62,4 +62,29 @@ angular.module('app.services', [])
 		return deferred.promise;
 	}
 	
+	this.getTimes = function(providerId){
+		
+		// return dummy data
+		var deferred = $q.defer();
+		
+		var data =	
+			[
+				{
+					years :  ['2016', '2017'],
+					months : ['1','2','3','4','5','6','7','8','9','10','11','12'],
+					days:    ['MON', 'THU'],
+					hours:   [7, 8, 9]
+				},
+				{
+					years : ['2016', '2017'],
+					months : ['1','2','3','4','5','6','7','8','9','10','11','12'],
+					days:   ['SUN', 'TUE'],
+					hours:   [1,2,3]
+				}				
+			];		
+		deferred.resolve(data);
+		
+		return deferred.promise;	
+	}
+	
 }]);
