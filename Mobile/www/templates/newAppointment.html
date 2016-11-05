@@ -3,21 +3,23 @@
     <form id="newAppointment-form1" class="list">
       <label class="item item-input" id="newAppointment-input4" name="firstName">
         <span class="input-label">First Name</span>
-        <input type="text" placeholder="type your first name..">
+        <input type="text" placeholder="type your first name.." ng-model="form1Data.firstName">
       </label>
       <label class="item item-input" id="newAppointment-input3" name="lastName">
         <span class="input-label">Last Name</span>
-        <input type="text" placeholder="type your last name..">
+        <input type="text" placeholder="type your last name.."  ng-model="form1Data.lastName">
       </label>
       <label class="item item-input" id="newAppointment-input5" name="phone">
         <span class="input-label">Phone</span>
-        <input type="tel" placeholder="your phone number">
+        <input type="tel" placeholder="your phone number"  ng-model="form1Data.phone">
       </label>
       <label class="item item-input" id="newAppointment-input6" name="email">
         <span class="input-label">Email</span>
-        <input type="email" placeholder="type your email">
+        <input type="email" placeholder="type your email"  ng-model="form1Data.email">
       </label>
-      <button id="newAppointment-button3" class="button button-positive  button-block">Continue</button>
+      
+      <button id="newAppointment-button3" ng-click="createAppointment()" class="button button-positive  button-block">Continue</button>
+      <button id="newAppointment-button3" ng-click="clearForm()" class="button button-stable button-outline button-block">Clear Form</button>
     </form>
   </ion-content>
 </ion-view>
