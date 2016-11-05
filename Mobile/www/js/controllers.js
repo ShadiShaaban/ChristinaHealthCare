@@ -71,7 +71,7 @@ function ($scope, $stateParams, appointmentsService , $ionicLoading) {
 		$ionicLoading.show({ template: 'Loading...' });
 		appointmentsService.checkAppointment($scope.form.id, $scope.form.lastName).then(
 		function(data){			
-			alert("Appointment was found successfully.");
+			alert("Appointment was found successfully !!TODO: Manage Appointment Screen!!");
 			localStorage.setItem("currentManageAppointmentId", $scope.form.id);
 			localStorage.setItem("currentManageAppointmentLastName", $scope.form.lastName);
 		},
@@ -84,11 +84,8 @@ function ($scope, $stateParams, appointmentsService , $ionicLoading) {
 
 }])
       
-.controller('formsCtrl', ['$scope', '$stateParams', 
-function ($scope, $stateParams) {
 
 
-}])
    
 .controller('chooseProviderCtrl', ['$scope', '$stateParams' , 'healthProvidersService',  '$ionicLoading',
 function ($scope, $stateParams , healthProvidersService , $ionicLoading) {
